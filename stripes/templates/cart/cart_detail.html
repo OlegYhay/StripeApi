@@ -31,12 +31,10 @@
 
     </tbody>
 </table>
-
-
+{% if counts != 0%}
 <form method="get" action="{% url 'order_create' %}" style="margin-left:50px;">
     <button class="btn btn-primary bg-primary" type="submit">Оформить заказ</button>
 </form>
-
-
+{% endif %}
 
 {% endblock content %}

@@ -37,4 +37,4 @@ def cart_detail(request):
         cart.cart[str(product.id)]['total_price'] = float(cart.cart[str(product.id)]['quantity']) * float(
             cart.cart[str(product.id)]['price'])
         sum += cart.cart[str(product.id)]['total_price']
-    return render(request, 'cart/cart_detail.html', {'cart': cart.cart, 'itogsumm': sum})
+    return render(request, 'cart/cart_detail.html', {'cart': cart.cart, 'itogsumm': sum,'counts':products.count()})
