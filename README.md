@@ -13,3 +13,6 @@
   
   
 Nice!
+
+Ссылка приложения развернутого на heroku
+https://mysterious-temple-47923.herokuapp.com
