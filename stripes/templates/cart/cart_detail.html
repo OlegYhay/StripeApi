@@ -1,0 +1,42 @@
+{% extends '_base.html' %}
+{% block title %} Корзина {% endblock title %}
+
+{% block content %}
+<h1 style="margin-left:50px;">Корзина</h1>
+
+
+<table class="table" style="margin-left:50px;">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Изображение</th>
+        <th scope="col">Hаименование</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Сумма</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for key,value in cart.items %}
+    <tr>
+        <th scope="row"><img  src="{{value.product.img.url}}" width="100px"/></th>
+        <td>{{value.product.name}}</td>
+        <td>{{value.quantity}}</td>
+        <td>{{value.price}} {{value.product.currency}}</td>
+        <td>{{value.total_price }}</td>
+        <td><a href="{% url 'cart:cart_remove' value.product.id %}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+<form method="get" action="{% url 'order_create' %}" style="margin-left:50px;">
+    <button class="btn btn-primary bg-primary" type="submit">Оформить заказ</button>
+</form>
+
+
+
+{% endblock content %}

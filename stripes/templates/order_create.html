@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Формирование заказа {% endblock title %}
+{% block content %}
+<div style="margin-left:50px">
+<h2>Оформление заказа</h2>
+<h4>Cостав заказа</h4>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Изображение</th>
+        <th scope="col">Hаименование</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Сумма</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key,value in cart.items %}
+    <tr>
+        <th scope="row"><img src="{{value.product.img.url}}" width="70px"/></th>
+        <td>{{value.product.title}}</td>
+        <td>{{value.quantity}}</td>
+        <td>{{value.price}} {{value.product.currency}}</td>
+        <td>{{value.total_price }}</td>
+        <td><a href="{% url 'cart:cart_remove' value.product.id %}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+
+<h4>Дополнительная информация</h4>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <table><th><td>{{form.discount|as_crispy_field}}<td/>  <td>{{form.tax|as_crispy_field}}<td/><th/></table>
+    <input name="varia" value="session" type="hidden">
+    <input type="submit" class="btn btn-outline-success" value="Оплатить через session" style="margin-top:20px;"/>
+</form>
+
+    <form method="post" action="">
+    {% csrf_token %}
+        <input name="varia" value="intent" type="hidden">
+    <input type="submit" class="btn btn-outline-success" value="Оплатить через intent" style="margin-top:20px;"/>
+</form>
+    </div>
+{%endblock content%}

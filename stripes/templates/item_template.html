@@ -1,0 +1,31 @@
+{% extends '_base.html'%}
+{% block content%}
+<form method="GET" action="/buy/{{item.pk}}">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{item.img.url}}"  alt="Изображение"  width="100%">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">{{item.description}}</p>
+            <p class="card-text"><h6 class="text-muted">{{item.price}} {{item.currency}}</h6></p>
+              <button type="submit" class="btn btn-primary bg-primary">Купить</button>
+            </form>
+            <form action="{% url 'cart:cart_add' item.id %}" method="post">
+                        {% csrf_token %}
+                        <input name="quantity" value="1" type="hidden">
+                        <button type="submit" class="btn btn-primary bg-secondary">Добавить в корзину</button>
+              </form>
+            <form action="{% url 'buy_item_intent' item.id %}" method="get">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning ">Купить через intent</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+
+{% endblock content %}
