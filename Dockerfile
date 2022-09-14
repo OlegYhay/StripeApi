@@ -12,5 +12,7 @@ RUN pip install django-debug-toolbar
 RUN pip install django-rest-framework
 RUN pip install django-crispy-forms
 RUN pip install pillow
+RUN pip install Django
+RUN pip install gunicorn
 
 COPY . /StripeApi/

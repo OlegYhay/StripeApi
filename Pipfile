@@ -9,6 +9,7 @@ django-rest-framework = "*"
 stripe = "*"
 django-crispy-forms = "*"
 pillow = "*"
+gunicorn = "*"
 
 [dev-packages]
 

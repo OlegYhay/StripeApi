@@ -1,0 +1,1 @@
+web: sh -c 'cd stripes && gunicorn stripes.wsgi --log-file=-'
